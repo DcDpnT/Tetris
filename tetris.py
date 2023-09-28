@@ -13,22 +13,18 @@ FPS = 40
 pygame.mixer.init()
 music_files = ['musics/ST1.mp3', 'musics/ST2.mp3', 'musics/ST3.mp3']
 current_music = 0
-MUSIC_END = pygame.USEREVENT + 1
-pygame.mixer.music.set_endevent(MUSIC_END)
 pygame.mixer.music.set_volume(0.2)
 
 
-def play_next_music():
-    global current_music
-    pygame.mixer.music.stop()
-    current_music = (current_music + 1) % len(music_files)
-    pygame.mixer.music.load(music_files[current_music])
-    pygame.mixer.music.play(loops=-1)
+pygame.mixer.init()
+music_files = ['musics/ST1.mp3', 'musics/ST2.mp3', 'musics/ST3.mp3']
+current_music = 0
+pygame.mixer.music.set_volume(0.2)
 
 
 # Charger et jouer la première musique au démarrage
 pygame.mixer.music.load(music_files[current_music])
-pygame.mixer.music.play(loops=-1)
+pygame.mixer.music.play(loops=0)
 
 pygame.init()
 sc = pygame.display.set_mode(RES)
