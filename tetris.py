@@ -6,7 +6,7 @@ from random import choice, randrange
 W, H = 10, 20
 TILE = 45
 GAME_RES = W * TILE, H * TILE
-RES = 750, 940
+RES = 600, 800
 FPS = 40
 
 # Please don't stop the music!
@@ -127,8 +127,6 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit()
-        if event.type == MUSIC_END:
-            play_next_music()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 dx = -1
