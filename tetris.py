@@ -13,6 +13,8 @@ FPS = 40
 pygame.mixer.init()
 music_files = ['musics/ST1.mp3', 'musics/ST2.mp3', 'musics/ST3.mp3']
 current_music = 0
+MUSIC_END = pygame.USEREVENT + 1
+pygame.mixer.music.set_endevent(MUSIC_END)
 pygame.mixer.music.set_volume(0.2)
 
 
@@ -129,6 +131,8 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit()
+        if event.type == MUSIC_END:
+            play_next_music()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 dx = -1
@@ -141,9 +145,6 @@ while True:
             elif event.key == pygame.K_q:
                 pygame.mixer.stop()
                 exit()
-            elif event.key == pygame.K_n:  # musique suivante
-                pygame.mixer.stop()
-                play_next_music()
 
     # mouvement côtés X
     figure_old = deepcopy(figure)
