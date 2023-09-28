@@ -6,7 +6,7 @@ from random import choice, randrange
 W, H = 10, 20
 TILE = 45
 GAME_RES = W * TILE, H * TILE
-RES = 600, 800
+RES = 750, 940
 FPS = 40
 
 # Please don't stop the music!
