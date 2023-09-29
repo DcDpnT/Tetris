@@ -9,32 +9,23 @@ GAME_RES = W * TILE, H * TILE
 RES = 750, 940
 FPS = 40
 
-# Please don't stop the music!
-pygame.mixer.init()
-music_files = ['musics/ST1.mp3', 'musics/ST2.mp3', 'musics/ST3.mp3']
-current_music = 0
-pygame.mixer.music.set_volume(0.2)
-
-
-pygame.mixer.init()
-music_files = ['musics/ST1.mp3', 'musics/ST2.mp3', 'musics/ST3.mp3']
-current_music = 0
-pygame.mixer.music.set_volume(0.2)
-
-
-# Charger et jouer la première musique au démarrage
-pygame.mixer.music.load(music_files[current_music])
-pygame.mixer.music.play(loops=0)
 
 pygame.init()
 sc = pygame.display.set_mode(RES)
 game_sc = pygame.Surface(GAME_RES)
 clock = pygame.time.Clock()
 
+
+# Please don't stop the music!
+mp3_files = ['musics/ST1.mp3', 'musics/ST2.mp3', 'musics/ST3.mp3']
+current_song_index = 0
+pygame.mixer.music.load(mp3_files[current_song_index])
+pygame.mixer.music.set_volume(0.2)
+pygame.mixer.music.play()
+
 # images du background
 background_change_interval = 60000
 background_change_timer = pygame.time.get_ticks() + background_change_interval
-
 
 game_bg = pygame.image.load('img/ST.jpg').convert()
 bg = pygame.image.load('img/ST1.jpg').convert()
@@ -127,6 +118,10 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit()
+        if not pygame.mixer.music.get_busy():
+            current_song_index = (current_song_index + 1) % len(mp3_files)
+            pygame.mixer.music.load(mp3_files[current_song_index])
+            pygame.mixer.music.play()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 dx = -1
