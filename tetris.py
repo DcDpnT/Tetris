@@ -23,21 +23,17 @@ pygame.mixer.music.load(mp3_files[current_song_index])
 pygame.mixer.music.set_volume(0.2)
 pygame.mixer.music.play()
 
-# images du background
+
+bg = pygame.image.load('img/ST.jpg').convert()
+game_bg = pygame.image.load('img/ST1.jpg').convert()
+game_bg2 = pygame.image.load('img/ST2.jpg').convert()
+game_bg3 = pygame.image.load('img/ST3.jpg').convert()
+game_bg4 = pygame.image.load('img/ST4.jpg').convert
+
+backgrounds = [game_bg, game_bg2, game_bg3, game_bg4]
+current_background = 0
 background_change_interval = 60000
 background_change_timer = pygame.time.get_ticks() + background_change_interval
-
-game_bg = pygame.image.load('img/ST.jpg').convert()
-bg = pygame.image.load('img/ST1.jpg').convert()
-bg2 = pygame.image.load('img/ST2.jpg').convert()
-bg3 = pygame.image.load('img/ST3.jpg').convert()
-bg4 = pygame.image.load('img/ST4.jpg').convert
-
-backgrounds = [bg, bg2, bg3, bg4]
-current_background = 0
-
-# arrière-plan actuel
-sc.blit(backgrounds[current_background], (0, 0))
 
 
 grid = [pygame.Rect(x * TILE, y * TILE, TILE, TILE)
@@ -108,6 +104,13 @@ while True:
     sc.blit(bg, (0, 0))
     sc.blit(game_sc, (20, 20))
     game_sc.blit(game_bg, (0, 0))
+
+    # Gestion du changement d'arrière-plan
+    current_time = pygame.time.get_ticks()
+    if current_time >= background_change_timer:
+        current_background = (current_background + 1) % len(backgrounds)
+        game_sc.blit(backgrounds[current_background], (0, 0))
+        background_change_timer = current_time + background_change_interval
 
 
 # si lignes complete
@@ -216,13 +219,7 @@ while True:
     sc.blit(title_record, (525, 650))
     sc.blit(font.render(record, True, pygame.Color('gold')), (550, 710))
 
-    # Vérification du changement d'arrière-plan
-    current_time = pygame.time.get_ticks()
-    if current_time - background_change_timer >= background_change_interval:
-        current_background = (current_background + 1) % len(backgrounds)
-        background_change_timer = current_time
-
-   # game-over
+# game-over
     for i in range(W):
         if field[0][i]:
             set_record(record, score)
