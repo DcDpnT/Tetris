@@ -105,15 +105,7 @@ while True:
     sc.blit(game_sc, (20, 20))
     game_sc.blit(game_bg, (0, 0))
 
-    # Gestion du changement d'arrière-plan
-    current_time = pygame.time.get_ticks()
-    if current_time >= background_change_timer:
-        current_background = (current_background + 1) % len(backgrounds)
-        game_sc.blit(backgrounds[current_background], (0, 0))
-        background_change_timer = current_time + background_change_interval
-
-
-# si lignes complete
+ # si lignes complete
     for i in range(lines):
         pygame.time.wait(200)
 
