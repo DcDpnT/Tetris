@@ -166,6 +166,7 @@ while True:
             if not check_borders():
                 figure = deepcopy(figure_old)
                 break
+
     # controle des lignes
     line, lines = H - 1, 0
     for row in range(H - 1, -1, -1):
