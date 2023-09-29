@@ -24,11 +24,11 @@ pygame.mixer.music.set_volume(0.2)
 pygame.mixer.music.play()
 
 
-bg = pygame.image.load('img/ST.jpg').convert()
-game_bg = pygame.image.load('img/ST1.jpg').convert()
+bg = pygame.image.load('img/ST4.jpg').convert()
+game_bg = pygame.image.load('img/ST.jpg').convert()
 game_bg2 = pygame.image.load('img/ST2.jpg').convert()
 game_bg3 = pygame.image.load('img/ST3.jpg').convert()
-game_bg4 = pygame.image.load('img/ST4.jpg').convert
+game_bg4 = pygame.image.load('img/ST1.jpg').convert
 
 backgrounds = [game_bg, game_bg2, game_bg3, game_bg4]
 current_background = 0
@@ -211,7 +211,7 @@ while True:
     sc.blit(title_record, (525, 650))
     sc.blit(font.render(record, True, pygame.Color('gold')), (550, 710))
 
-# game-over
+    # game-over
     for i in range(W):
         if field[0][i]:
             set_record(record, score)
